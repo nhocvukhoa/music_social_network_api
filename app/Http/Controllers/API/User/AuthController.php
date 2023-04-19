@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Exception;
+use App\Http\Requests\User\Auth\RegisterRequest;
+use App\Http\Requests\User\Auth\LoginRequest;
+use App\Http\Requests\User\Auth\LogoutRequest;
 
 class AuthController extends Controller
 {
@@ -16,7 +19,7 @@ class AuthController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return void
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         try {
             $user = User::create([
@@ -47,7 +50,7 @@ class AuthController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return void
      */
-    public function login(Request $request) 
+    public function login(LoginRequest $request) 
     {
         try {
             $user = User::where('email', '=', $request->input('email'))->firstOrFail();
@@ -79,7 +82,7 @@ class AuthController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return void
      */
-    public function logout(Request $request) 
+    public function logout(LogoutRequest $request) 
     {
         try {
             $user = User::findOrFail($request->input('user_id'));
