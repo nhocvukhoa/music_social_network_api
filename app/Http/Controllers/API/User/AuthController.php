@@ -34,7 +34,7 @@ class AuthController extends Controller
             return response()->json([
                 'user' => $user,
                 'token' => $token,
-                'message' => 'Register success'
+                'message' => __('auth.register.success')
             ], 200);
         } catch (Exception $e) {
             return response()->json([
@@ -61,12 +61,12 @@ class AuthController extends Controller
                 return response()->json([
                     'user' => $user,
                     'token' => $token,
-                    'message' => 'Login success'
+                    'message' => __('auth.login.success')
                 ], 200);
             }
 
             return response()->json([
-                'error' => 'Login failed'
+                'error' => __('auth.login.error')
             ]);
         } catch (Exception $e) {
             return response()->json([
